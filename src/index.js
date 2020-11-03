@@ -40,7 +40,7 @@ class App extends React.Component {
       });
   };
 
-  componentDidMount() {
+  setTodos = () => {
     fetch("http://localhost:5000/api/get-all-todos")
       .then((res) => res.json())
       .then((data) =>
@@ -48,11 +48,15 @@ class App extends React.Component {
           todos: data,
         })
       );
+  };
+
+  componentDidMount() {
+    this.setTodos();
   }
 
   renderTodos = () => {
     return this.state.todos.map((todo) => {
-      return <TodoItem key={todo.id} todo={todo} />;
+      return <TodoItem key={todo.id} todo={todo} setTodos={this.setTodos} />;
     });
   };
 
