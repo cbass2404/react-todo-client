@@ -1,11 +1,35 @@
 import React from "react";
-import App from "./components/App";
+import ReactDOM from "react-dom";
 
-import "./components/style/main.scss";
+class App extends React.Component {
+  constructor(props) {
+    super(props);
+    this.state = {
+      todo: "",
+    };
+  }
 
-ReactDOM.render(
-  <React.StrictMode>
-    <App />
-  </React.StrictMode>,
-  document.getElementById("root")
-);
+  handleChange = (e) => {
+    this.setState({
+      todo: e.target.value,
+    });
+  };
+
+  render() {
+    return (
+      <div>
+        <form>
+          <input
+            type="text"
+            placeholder="Add Todo"
+            value={this.state.todo}
+            onChange={this.handleChange}
+          />
+        </form>
+      </div>
+    );
+  }
+}
+
+const rootElement = document.getElementById("root");
+ReactDOM.render(<App />, rootElement);
