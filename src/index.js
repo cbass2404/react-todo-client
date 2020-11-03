@@ -37,7 +37,6 @@ class App extends React.Component {
           todos: [data, ...prevState.todos],
           todo: "",
         }));
-        console.log(data);
       });
   };
 
