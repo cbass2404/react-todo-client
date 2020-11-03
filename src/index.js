@@ -21,8 +21,22 @@ class App extends React.Component {
   };
 
   handleSubmit = (e) => {
-    console.log("handlesubmit", this.state.todo);
     e.preventDefault();
+    console.log("addtodo");
+    fetch("http://localhost:5000/api/create-todo", {
+      method: "POST",
+      headers: { "content-type": "application/json" },
+      body: JSON.stringify({
+        title: this.state.todo,
+        done: false,
+      }),
+    })
+      .then((res) => {
+        res.json();
+      })
+      .then((data) => {
+        console.log(data);
+      });
   };
 
   componentDidMount() {
@@ -51,6 +65,7 @@ class App extends React.Component {
             placeholder="Add Todo"
             value={this.state.todo}
             onChange={this.handleChange}
+            required
           />
           <button type="submit">Add</button>
         </form>
