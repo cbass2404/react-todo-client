@@ -7,9 +7,6 @@
 - create form for creating a todo
   - Take that data from the form and submit it to flask api
   - /api/create-todo
-- Render all todos
-  - Get all todos from flask api
-  - /api/get-all-todos
 - Mark todo complete
   - Talk to flask api and mark done as 'true' via 'id'
   - /api/edit-todo/id
