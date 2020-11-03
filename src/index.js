@@ -20,7 +20,7 @@ class App extends React.Component {
     });
   };
 
-  handleSubmit = (e) => {
+  addTodo = (e) => {
     e.preventDefault();
     console.log("addtodo");
     fetch("http://localhost:5000/api/create-todo", {
@@ -31,10 +31,12 @@ class App extends React.Component {
         done: false,
       }),
     })
-      .then((res) => {
-        res.json();
-      })
+      .then((res) => res.json())
       .then((data) => {
+        this.setState((prevState) => ({
+          todos: [data, ...prevState.todos],
+          todo: "",
+        }));
         console.log(data);
       });
   };
@@ -59,7 +61,7 @@ class App extends React.Component {
     return (
       <div className="app">
         <h1>Todo List</h1>
-        <form className="add-todo" onSubmit={this.handleSubmit}>
+        <form className="add-todo" onSubmit={this.addTodo}>
           <input
             type="text"
             placeholder="Add Todo"
