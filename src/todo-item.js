@@ -20,14 +20,6 @@ class TodoItem extends Component {
     });
   };
 
-  todoDelete = () => {
-    fetch(`http://localhost:5000/api/delete-todo/${this.props.todo.id}`, {
-      method: "DELETE",
-    }).then(() => {
-      this.props.setTodos();
-    });
-  };
-
   render() {
     return (
       <div className="todo-item">
@@ -37,7 +29,9 @@ class TodoItem extends Component {
           onChange={this.toggleDone}
         />
         <p className={this.state.done ? "done" : ""}>{this.props.todo.title}</p>
-        <button onClick={() => this.todoDelete()}>Delete</button>
+        <button onClick={() => this.props.deleteTodo(this.props.todo.id)}>
+          X
+        </button>
       </div>
     );
   }
