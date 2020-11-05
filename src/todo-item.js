@@ -9,11 +9,14 @@ class TodoItem extends Component {
   }
 
   toggleDone = () => {
-    fetch(`http://localhost:5000/api/edit-todo/${this.props.todo.id}`, {
-      method: "PATCH",
-      headers: { "content-type": "application/json" },
-      body: JSON.stringify({ done: !this.state.done }),
-    }).then(() => {
+    fetch(
+      `https://clb-flask-todo-api.herokuapp.com/api/edit-todo/${this.props.todo.id}`,
+      {
+        method: "PATCH",
+        headers: { "content-type": "application/json" },
+        body: JSON.stringify({ done: !this.state.done }),
+      }
+    ).then(() => {
       this.setState((prevState) => ({
         done: !prevState.done,
       }));
